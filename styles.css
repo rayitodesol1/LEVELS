@@ -1,4 +1,4 @@
-Ôªø/* Levels Architecture ‚Äî tokens from 00_brand/tokens.css */
+/* Levels Architecture ó tokens from 00_brand/tokens.css */
 :root {
   --arena: #EADFCB;
   --terracota: #C99A6C;
@@ -72,8 +72,10 @@ a { color: inherit; }
 }
 body.scrolled .topbar::before { opacity: 1; }
 body.in-tour .topbar::before { opacity: .6; }
-.topbar__mark img { height: 34px; width: auto; opacity: 0; transform: translateY(-6px); transition: .6s var(--ease); }
+.topbar__mark { display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; }
+.topbar__mark img { height: 34px; width: auto; opacity: 0; transform: translateY(-6px); transition: opacity .6s var(--ease), transform .6s var(--ease), filter .4s var(--ease); }
 body.scrolled .topbar__mark img { opacity: 1; transform: none; }
+.topbar__mark:hover img, .topbar__mark:focus-visible img, .topbar__mark:active img { filter: drop-shadow(0 0 6px rgba(255, 214, 140, .95)) drop-shadow(0 0 18px rgba(255, 190, 110, .8)) brightness(1.22); }
 .lang {
   font: 600 12px/1 var(--font-sans); letter-spacing: .14em;
   background: rgba(46, 36, 28, .35); color: var(--muted);
@@ -114,7 +116,7 @@ body.intro-done .dots { opacity: 1; }
 }
 .hero__stage { position: absolute; inset: 0; padding: 0 var(--gutter); }
 
-/* The logo is laid out ONCE at its final size/place; the centre ‚Üí left move is done only with
+/* The logo is laid out ONCE at its final size/place; the centre ? left move is done only with
    transform (GPU), set by app.js. No width/left/top animation and no filters = no tearing, no cut. */
 .hero__logo {
   position: absolute; left: var(--gutter); top: 31%;
@@ -125,7 +127,9 @@ body.intro-done .dots { opacity: 1; }
   backface-visibility: hidden;
   transition: opacity 1.3s var(--ease), transform 1.6s cubic-bezier(.65, 0, .35, 1);
 }
-.hero__logo img { position: relative; display: block; width: 100%; height: auto; }
+.hero__logo { cursor: pointer; }
+.hero__logo img { position: relative; display: block; width: 100%; height: auto; transition: filter .4s var(--ease); }
+.hero__logo:hover img, .hero__logo:active img { filter: drop-shadow(0 0 10px rgba(255, 214, 140, .95)) drop-shadow(0 0 26px rgba(255, 190, 110, .7)) brightness(1.15); }
 .hero__logo .glow {   /* stronger warm light behind the logo so it stands out */
   inset: -70% -30%;
   background:
@@ -189,7 +193,7 @@ body.intro-done .hero__cue { opacity: 1; }
   background: var(--madera-deep); color: inherit; text-align: left; overflow: hidden;
   aspect-ratio: 16 / 7; border-radius: 4px;
 }
-/* B&W where the light arrives in warm earth tone (brief) ‚Üí full colour on hover / click */
+/* B&W where the light arrives in warm earth tone (brief) ? full colour on hover / click */
 .level img {
   position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
@@ -389,7 +393,7 @@ body.intro-done .hero__cue { opacity: 1; }
    It slides in from its side and stays while the camera rests. */
 .tour__cards { position: absolute; inset: 0; pointer-events: none; }
 .card {
-  position: absolute; top: clamp(140px, 20vh, 200px);          /* clear of "‚Üê Projects" */
+  position: absolute; top: clamp(140px, 20vh, 200px);          /* clear of "? Projects" */
   width: max-content; max-width: min(46vw, calc(100% - 2 * var(--gutter) - 56px));
   color: var(--crema);
   text-shadow: 0 2px 24px rgba(30, 22, 16, .55);
@@ -406,14 +410,14 @@ body.intro-done .hero__cue { opacity: 1; }
 .card.on > :nth-child(4) { transition-delay: .34s; }
 .card.on > :nth-child(5), .card.on > :nth-child(6) { transition-delay: .44s; }
 
-.card__mast {   /* the big masthead word, like ‚Äúhospitality‚Äù */
+.card__mast {   /* the big masthead word, like ìhospitalityî */
   margin: 0 0 10px;
   font: 800 clamp(44px, 5.6vw, 104px)/.86 var(--font-sans);
   letter-spacing: -.045em;
   color: var(--arena);
   white-space: nowrap;
 }
-.card__k {      /* thin lowercase line, like ‚Äúraising the bar‚Äù */
+.card__k {      /* thin lowercase line, like ìraising the barî */
   margin: 0 0 12px;
   font: 300 clamp(15px, 1.4vw, 20px)/1.2 var(--font-sans);
   letter-spacing: .02em; color: rgba(245, 240, 230, .9);
@@ -423,7 +427,7 @@ body.intro-done .hero__cue { opacity: 1; }
   background: linear-gradient(90deg, rgba(245, 240, 230, .85), rgba(245, 240, 230, 0));
 }
 .card--r .card__k::after { margin-left: auto; background: linear-gradient(270deg, rgba(245, 240, 230, .85), rgba(245, 240, 230, 0)); }
-.card h3 {      /* serif title, like ‚Äúthe hd awards issue‚Äù */
+.card h3 {      /* serif title, like ìthe hd awards issueî */
   margin: 0 0 16px; max-width: min(520px, 32vw);
   font: 400 clamp(28px, 3vw, 44px)/1.08 var(--font-serif);
   color: var(--crema);
@@ -527,7 +531,7 @@ body.in-tour .dots .t, body.in-tour .dots a.is-active .t { opacity: 0; transform
 body.in-tour .dots a:hover .t { opacity: 1; transform: none; }
 
 /* ---------- warm light on hover (menu, titles, subtitles) ----------
-   Text "lights up" like the LED strips in the renders: arena ‚Üí warm yellow + soft glow. */
+   Text "lights up" like the LED strips in the renders: arena ? warm yellow + soft glow. */
 :root {
   --lamp: #FFE2A6;                         /* warm yellow light */
   --lamp-glow: 0 0 6px rgba(255, 214, 140, .85), 0 0 18px rgba(255, 190, 110, .55), 0 0 42px rgba(232, 160, 80, .35);
