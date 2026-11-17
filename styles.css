@@ -440,6 +440,8 @@ body.intro-done .hero__cue { opacity: 1; }
 .card__data { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .card--r .card__data { justify-content: flex-end; }
 .card__data span { font: 500 12px/1 var(--font-sans); padding: 8px 12px; border-radius: 999px; background: rgba(46, 36, 28, .45); border: 1px solid rgba(234, 223, 203, .25); color: var(--arena); text-shadow: none; }
+.card__data span.is-l { display: inline-flex; flex-direction: column; gap: 5px; border-radius: 14px; line-height: 1.15; }
+.card__data span.is-l small { font: 600 9.5px/1 var(--font-sans); letter-spacing: .12em; text-transform: uppercase; color: rgba(234, 223, 203, .62); }
 .card__cortes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 18px; max-width: 440px; }
 .card__cortes img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 10px; background: var(--crema); box-shadow: 0 6px 20px rgba(30, 22, 16, .35); }
 .card__mast:hover, .card__k:hover { color: var(--lamp); text-shadow: var(--lamp-glow); }
