@@ -107,6 +107,55 @@
     setTimeout(() => rots[ri].classList.add('on'), 750);
   }, 4200);
 
+  /* ---------- Concepto: Luisa's three pillars light up and explain themselves over a project image ---------- */
+  const CONCEPTS = {
+    fen: { img: 'assets/proyecto-04/img/kf_02.webp',
+      w: { en: 'Phenomenology', es: 'Fenomenología' },
+      k: { en: 'Casa Nido · a garden that embraces the house', es: 'Casa Nido · un jardín que abraza la casa' },
+      p: { en: 'The built environment directly shapes human development: how we rest, relate, work and feel. That is why experience is my starting point. Every project begins with one question: what does the person who will inhabit this place want to experience?',
+           es: 'El entorno construido influye directamente en el desarrollo humano: cómo descansamos, nos relacionamos, trabajamos y nos sentimos. Por eso la experiencia es mi punto de partida. En cada proyecto parto de una pregunta: ¿qué quiere experimentar quien habite este lugar?' } },
+    bio: { img: 'assets/proyecto-03/img/kf_05.webp',
+      w: { en: 'Bioclimatic', es: 'Bioclimática' },
+      k: { en: 'El Refugio · solar-control glass and cross ventilation', es: 'El Refugio · vidrio de control solar y ventilación cruzada' },
+      p: { en: 'It is part of the design from the very first line. I study the sun, winds, temperature, humidity and rainfall of the site, and with that data I define orientation, openings, cross ventilation, natural light and local materials. Every decision serves the climate and improves how the space feels.',
+           es: 'Es parte del diseño desde el primer trazo. Estudio el sol, los vientos, la temperatura, la humedad y las lluvias del sitio, y con esos datos defino orientación, aberturas, ventilación cruzada, luz natural y materiales del lugar. Cada decisión cumple una función climática y mejora cómo se siente el espacio.' } },
+    jer: { img: 'assets/proyecto-02/img/kf_02.webp',
+      w: { en: 'Hierarchy', es: 'Jerarquía' },
+      k: { en: 'Finca Lomix · the social level, lower, toward the deck', es: 'Finca Lomix · el nivel social, más abajo, hacia el deck' },
+      p: { en: 'LEVELS starts from hierarchy: I set each space apart according to the importance it should have, through heights and level changes: double heights, platforms and transitions. Each level has an intention, and together they form a balanced whole.',
+           es: 'LEVELS parte del concepto de jerarquía: diferencio cada espacio según la importancia que se quiere generar, a través de alturas y desniveles: dobles alturas, plataformas y transiciones. Cada nivel tiene una intención, y juntos forman un conjunto equilibrado.' } },
+  };
+  const conceptBox = $('.concepts'), pop = $('.concept-pop'), keys = $('.manifesto__keys');
+  if (conceptBox && pop && keys) {
+    Object.values(CONCEPTS).forEach(c => { const i = new Image(); i.src = c.img; });   // preload so it appears instantly
+    let current = null;
+    const show = k => {
+      const c = CONCEPTS[k]; if (!c) return;
+      current = k;
+      const im = $('.concept-pop__img', pop);
+      im.src = c.img; im.alt = c.k[lang];
+      $('.concept-pop__mast', pop).textContent = c.w[lang];
+      $('.concept-pop__k', pop).textContent = c.k[lang];
+      $('.concept-pop__p', pop).textContent = c.p[lang];
+      pop.classList.add('open');
+      $$('button', keys).forEach(b => b.classList.toggle('on', b.dataset.k === k));
+    };
+    const hide = () => { current = null; pop.classList.remove('open'); $$('button', keys).forEach(b => b.classList.remove('on')); };
+    const touch = matchMedia('(hover: none)');
+    keys.addEventListener('mouseover', e => { if (touch.matches) return; const b = e.target.closest('button[data-k]'); if (b) show(b.dataset.k); });
+    keys.addEventListener('mouseleave', () => { if (!touch.matches) hide(); });
+    keys.addEventListener('focusin', e => { if (touch.matches) return; const b = e.target.closest('button[data-k]'); if (b) show(b.dataset.k); });
+    keys.addEventListener('focusout', () => { if (!touch.matches) hide(); });
+    keys.addEventListener('click', e => {   // touch screens: tap to open, tap again (or anywhere else) to close
+      const b = e.target.closest('button[data-k]'); if (!b) return;
+      e.stopPropagation();
+      if (current === b.dataset.k && touch.matches) hide(); else show(b.dataset.k);
+    });
+    document.addEventListener('click', e => { if (current && !keys.contains(e.target)) hide(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+    $$('.lang [data-l]').forEach(b => b.addEventListener('click', hide));
+  }
+
   /* ---------- dot nav active state ---------- */
   const navLinks = $$('.dots a');
   const sections = navLinks.map(a => $(a.getAttribute('href')));

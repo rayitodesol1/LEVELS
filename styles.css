@@ -697,3 +697,53 @@ body::before {
   .manifesto__keys span + span::before { left: -17px; width: 4px; height: 4px; margin-top: -2px; }
 }
 @media (prefers-reduced-motion: reduce) { .manifesto__b { animation: none; } }
+
+/* ---------- Concepto: Luisa's pillars, lit like the rest of the site, explained over a project image ---------- */
+.concepts { position: relative; display: flex; justify-content: center; width: 100%; margin-top: 44px; }
+.manifesto__keys { margin: 0; padding: 20px 0; gap: 12px 54px; font: italic 300 clamp(22px, 2.2vw, 32px)/1.1 var(--font-serif); letter-spacing: .005em; text-transform: none; color: var(--terracota); }
+.manifesto__keys button {
+  position: relative; appearance: none; background: none; border: 0; padding: 4px 2px; margin: 0; cursor: pointer;
+  font: inherit; letter-spacing: inherit; color: inherit;
+  text-shadow: 0 0 14px rgba(232, 160, 80, .25);
+  transition: color .45s var(--ease), text-shadow .55s var(--ease);
+}
+.manifesto__keys button::after {
+  content: ""; position: absolute; left: 50%; right: 50%; bottom: -2px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lamp), transparent);
+  transition: left .5s var(--ease), right .5s var(--ease);
+}
+.manifesto__keys button + button::before {
+  content: ""; position: absolute; left: -29px; top: 50%; width: 5px; height: 5px; margin-top: -2px; border-radius: 50%;
+  background: var(--terracota); box-shadow: 0 0 8px rgba(232, 160, 80, .6);
+}
+.manifesto__keys button:hover, .manifesto__keys button:focus-visible, .manifesto__keys button.on { color: var(--lamp); text-shadow: var(--lamp-glow); outline: none; }
+.manifesto__keys button:hover::after, .manifesto__keys button.on::after, .manifesto__keys button:focus-visible::after { left: 8%; right: 8%; }
+
+.concept-pop {
+  position: absolute; left: 50%; bottom: calc(100% + 6px); z-index: 5;
+  width: min(640px, calc(100vw - 32px)); aspect-ratio: 16 / 10;
+  border-radius: 20px; overflow: hidden; text-align: left;
+  background: #2E241C;
+  box-shadow: 0 30px 80px rgba(20, 14, 10, .55), 0 0 0 1px rgba(234, 223, 203, .14), 0 0 60px rgba(232, 170, 100, .22);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translate(-50%, 18px) scale(.97); transform-origin: 50% 100%;
+  transition: opacity .45s var(--ease), transform .6s var(--ease), visibility 0s linear .6s;
+}
+.concept-pop.open { opacity: 1; visibility: visible; transform: translate(-50%, 0) scale(1); transition: opacity .45s var(--ease), transform .6s var(--ease), visibility 0s; }
+.concept-pop__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 6s ease-out; }
+.concept-pop.open .concept-pop__img { transform: scale(1); }
+.concept-pop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(30, 22, 16, .94) 0%, rgba(30, 22, 16, .72) 42%, rgba(30, 22, 16, .1) 74%, rgba(30, 22, 16, 0) 100%); }
+.concept-pop__body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: clamp(18px, 3vw, 30px); color: var(--crema); text-shadow: 0 2px 18px rgba(20, 14, 10, .6); }
+.concept-pop__mast { margin: 0 0 8px; font: 800 clamp(34px, 4.4vw, 64px)/.9 var(--font-sans); letter-spacing: -.045em; color: var(--arena); }
+.concept-pop__k { margin: 0 0 12px; font: 300 clamp(13px, 1.1vw, 15px)/1.3 var(--font-sans); letter-spacing: .02em; color: rgba(245, 240, 230, .9); }
+.concept-pop__k::after { content: ""; display: block; width: min(260px, 60%); height: 1px; margin-top: 10px; background: linear-gradient(90deg, rgba(245, 240, 230, .85), rgba(245, 240, 230, 0)); }
+.concept-pop__p { margin: 0; max-width: 560px; font: 400 clamp(13.5px, 1.05vw, 15.5px)/1.6 var(--font-sans); color: rgba(245, 240, 230, .92); }
+@media (max-width: 760px) {
+  .concepts { margin-top: 34px; }
+  .manifesto__keys { flex-wrap: nowrap; gap: 0 22px; font-size: clamp(15px, 4.5vw, 18px); }
+  .manifesto__keys button { padding: 4px 0; white-space: nowrap; }
+  .manifesto__keys button + button::before { left: -13px; width: 4px; height: 4px; }
+  .concept-pop { aspect-ratio: auto; height: min(470px, 78vh); }
+  .concept-pop::after { background: linear-gradient(0deg, rgba(30, 22, 16, .96) 0%, rgba(30, 22, 16, .82) 55%, rgba(30, 22, 16, .15) 85%, rgba(30, 22, 16, 0) 100%); }
+}
+@media (prefers-reduced-motion: reduce) { .concept-pop { transition: opacity .2s, visibility 0s; transform: translate(-50%, 0); } .concept-pop__img { transform: none; transition: none; } }
