@@ -665,3 +665,34 @@ body::before {
 .faq__a a:hover { color: var(--lamp); }
 .faq__refs { font-size: 14px; color: rgba(245, 240, 230, .62) !important; }
 
+/* ---------- Concepto: Luisa's slogan, centered and lit (white + sand) ---------- */
+.manifesto__in { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.manifesto .glow--soft { inset: -5% 10% 10%; opacity: .7; }
+.manifesto__a, .manifesto__b { margin-left: 0; margin-right: 0; }
+.manifesto__a {
+  font: 800 clamp(64px, 12vw, 190px)/.9 var(--font-sans); letter-spacing: -.05em; color: #FFFDF8;
+  text-shadow: 0 0 18px rgba(255, 236, 200, .35), 0 0 60px rgba(240, 196, 146, .28);
+}
+.manifesto__b {
+  margin-top: .02em; font: italic 300 clamp(48px, 9vw, 150px)/1 var(--font-serif); color: var(--arena);
+  text-shadow: 0 0 22px rgba(240, 196, 146, .45), 0 0 70px rgba(201, 154, 108, .3);
+  animation: slogan-breathe 5s ease-in-out infinite alternate;
+}
+@keyframes slogan-breathe {
+  from { text-shadow: 0 0 14px rgba(240, 196, 146, .3), 0 0 50px rgba(201, 154, 108, .18); }
+  to   { text-shadow: 0 0 26px rgba(255, 214, 160, .6), 0 0 90px rgba(232, 170, 100, .38); }
+}
+.manifesto__rule { margin: clamp(30px, 4vw, 52px) auto 26px; width: min(300px, 50%); background: linear-gradient(90deg, transparent, var(--terracota), transparent); }
+.manifesto__c { margin: 0 auto; max-width: 600px; font: italic 300 clamp(19px, 1.9vw, 25px)/1.55 var(--font-serif); color: rgba(245, 240, 230, .9); }
+.manifesto__keys { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin: 30px 0 0; font: 600 11px/1 var(--font-sans); letter-spacing: .22em; text-transform: uppercase; color: var(--arena); }
+.manifesto__keys span { position: relative; transition: color .5s var(--ease), text-shadow .6s var(--ease); }
+.manifesto__keys span + span::before { content: ""; position: absolute; left: -16px; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: var(--terracota); }
+.manifesto__keys span:hover { color: var(--lamp); text-shadow: var(--lamp-glow); }
+.manifesto__sig { margin: 26px 0 0; }
+.manifesto .reveal, .manifesto__b.reveal, .manifesto__c.reveal, .manifesto__sig.reveal { transform: translateY(34px); }
+.manifesto .reveal.in { transform: none; }
+@media (max-width: 760px) {
+  .manifesto__c { font-size: 18px; padding: 0 4px; }
+  .manifesto__keys { gap: 10px 24px; font-size: 10px; letter-spacing: .18em; }
+}
+@media (prefers-reduced-motion: reduce) { .manifesto__b { animation: none; } }
